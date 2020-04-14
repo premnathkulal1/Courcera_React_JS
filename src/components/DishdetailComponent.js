@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import  { Card, CardImg, CardText, CardTitle, CardBody } from 'reactstrap';
 
 
@@ -57,7 +57,5 @@ import  { Card, CardImg, CardText, CardTitle, CardBody } from 'reactstrap';
             );
         }
     }
-
-
 
 export default DishDetails;
