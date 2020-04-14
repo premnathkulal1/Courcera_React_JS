@@ -29,7 +29,7 @@ class Main extends Component {
         <Menu dishesh={this.state.dishesh} 
               onClick={(dishId) => this.onDishSelect(dishId)}/>
         <DishDetails 
-              prem_dish={this.state.dishesh.filter((dish) => dish.id === this.state.selectedDish) [0]} />
+              prem_dish={this.state.dishesh.filter((dish) => dish.id === this.state.selectedDish)[0]} />
       </div>
     );
   }
