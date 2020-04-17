@@ -9,7 +9,7 @@ import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishesh';
 import { COMMENTS } from '../shared/comments';
 import { LEADERS } from '../shared/leaders';
-import { PRMOTIONS, PROMOTIONS } from '../shared/promotions';
+import { PROMOTIONS } from '../shared/promotions';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component {
