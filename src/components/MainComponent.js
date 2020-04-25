@@ -48,10 +48,10 @@ class Main extends Component {
         <Home 
           dish = {this.props.dishesh.dishes.filter((dish) => dish.featured)[0]}
           dishesLosding={this.props.dishesh.isLoading}
-          dishesErrMess={this.props.dishesh.errmess}
+          dishesErrMess={this.props.dishesh.errMess}
           promotion = {this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
           promosLosding={this.props.promotions.isLoading}
-          promosErrMess={this.props.promotions.errmess}
+          promosErrMess={this.props.promotions.errMess}
           leader = {this.props.leaders.filter((leader) => leader.featured)[0]} 
         />
       );
