@@ -8,7 +8,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDidhes, fetchPromos, fetchComments } from '../redux/ActionCreators';
+import { postComment, postFeedback, fetchDidhes, fetchPromos, fetchComments, fetchLeader } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import  { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -22,13 +22,13 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  
   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+  postFeedback: (firstname, lastname, telnum, email, agree, contactType, message) => dispatch(postFeedback(firstname, lastname, telnum, email, agree, contactType, message)),
   fetchDidhes: () => {dispatch(fetchDidhes())},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },
   fetchComments: () => {dispatch(fetchComments())},
   fetchPromos: () => {dispatch(fetchPromos())},
-
+  fetchLeader: () => {dispatch(fetchLeader())}
 });
 
 class Main extends Component {
@@ -41,6 +41,7 @@ class Main extends Component {
     this.props.fetchDidhes();
     this.props.fetchComments();
     this.props.fetchPromos();
+    this.props.fetchLeader();
   }
 
   render(){ 
@@ -53,7 +54,9 @@ class Main extends Component {
           promotion = {this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
           promosLosding={this.props.promotions.isLoading}
           promosErrMess={this.props.promotions.errMess}
-          leader = {this.props.leaders.filter((leader) => leader.featured)[0]} 
+          leader = {this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
+          leaderLosding={this.props.leaders.isLoading}
+          leaderErrMess={this.props.leaders.errMess}
         />
       );
     }
@@ -80,8 +83,8 @@ class Main extends Component {
               <Route path="/home" component={HomePage} />
               <Route exact path="/menu" component={() => <Menu dishesh={this.props.dishesh} />} />
               <Route path="/menu/:dishId" component={DishWithId} />
-              <Route exact path="/aboutus" component={() => <Aboutus leaders={this.props.leaders} />} />
-              <Route exact path="/contactus" component={ () => <Contact resetFeedbackForm={this.props.resetFeedbackForm}/> } />
+              <Route exact path="/aboutus" component={() => <Aboutus leaders={this.props.leaders.leaders} />} />
+              <Route exact path="/contactus" component={ () => <Contact resetFeedbackForm={this.props.resetFeedbackForm}  postFeedback={this.props.postFeedback} /> } />
               <Redirect to="/home" />
             </Switch>
           </CSSTransition>
